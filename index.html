@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VOIDX Protocol</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Orbitron', monospace;
+            background: black;
+            color: #00ff99;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1549921296-3a6b3d15a3a1');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: -1;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        section {
+            padding: 10vh 5vw;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glitch {
+            font-size: 4rem;
+            font-weight: 700;
+            position: relative;
+            color: #00ff99;
+            animation: glitch 2s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .glitch::before {
+            animation: glitchTop 2s infinite;
+            color: #ff00ff;
+            top: -2px;
+        }
+
+        .glitch::after {
+            animation: glitchBottom 1.5s infinite;
+            color: #00ffff;
+            top: 2px;
+        }
+
+        @keyframes glitch {
+
+            0%,
+            60%,
+            100% {
+                transform: none
+            }
+
+            20% {
+                transform: skew(-0.5deg, -0.9deg)
+            }
+
+            40% {
+                transform: skew(0.9deg, 0.4deg)
+            }
+
+            80% {
+                transform: skew(0.3deg, -0.3deg)
+            }
+        }
+
+        @keyframes glitchTop {
+
+            0%,
+            20%,
+            100% {
+                clip: rect(0, 9999px, 0, 0);
+            }
+
+            10% {
+                clip: rect(0, 9999px, 10px, 0);
+            }
+
+            30% {
+                clip: rect(0, 9999px, 20px, 0);
+            }
+        }
+
+        @keyframes glitchBottom {
+
+            0%,
+            20%,
+            100% {
+                clip: rect(0, 9999px, 0, 0);
+            }
+
+            10% {
+                clip: rect(10px, 9999px, 9999px, 0);
+            }
+
+            30% {
+                clip: rect(20px, 9999px, 9999px, 0);
+            }
+        }
+
+        .subtext,
+        .section-text {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            color: #ccc;
+            text-shadow: 0 0 2px #00ff99;
+        }
+
+        .terminal-box {
+            margin-top: 4rem;
+            background: #111;
+            border: 1px solid #00ff99;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 1rem;
+            color: #00ff99;
+            width: fit-content;
+        }
+
+        .link-button {
+            margin-top: 3rem;
+            font-size: 1rem;
+            color: #00ff99;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff99;
+            padding: 0.5rem 1rem;
+            font-family: 'Orbitron', monospace;
+            color: #00ff99;
+            cursor: pointer;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-switch" onclick="toggleLanguage()">EN</div>
+
+    <section>
+        <div class="glitch" data-text="VOIDX PROTOCOL">VOIDX PROTOCOL</div>
+        <p class="subtext" id="intro-text">
+            Nós não herdamos a liberdade do sistema. Nós a forjamos — linha por linha, bloco por bloco. VOIDX não é
+            apenas uma moeda, é um ato de resistência. Uma declaração. Uma ruptura com a prisão algorítmica.
+        </p>
+        <div class="terminal-box" id="terminal-box">
+            $ init --chain voidx --peer cypherpunk.local<br>
+            # Conectando ao nó de resistência descentralizada...<br>
+            # Criptografia: ATIVA | Vigilância: DESLIGADA | Poder: SEU
+        </div>
+        <a class="link-button" href="#about" id="read-manifesto">↳ Ler manifesto</a>
+    </section>
+
+    <section id="about">
+        <div class="glitch" data-text="THE VOID">THE VOID</div>
+        <p class="section-text" id="illusion-text">
+            Vivemos cercados por ilusões de escolha. Cada clique, cada transferência, cada interação deixa uma impressão
+            digital, capturada, analisada e monetizada. Sistemas centralizados prometem conveniência — mas exigem
+            submissão.
+        </p>
+        <p class="section-text" id="emerge-text">
+            <strong>VOIDX</strong> surge das sombras como resposta. Um protocolo descentralizado, criptografado e
+            peer-to-peer onde o controle retorna ao indivíduo. Rejeitamos o capitalismo de vigilância. Rejeitamos o
+            monopólio institucional.
+        </p>
+        <p class="section-text" id="philosophy-text">
+            Inspirado por cypherpunks e moldado por rebeldes, VOIDX é mais do que uma moeda — é um chamado à
+            resistência. Nosso objetivo é não apenas privacidade, mas soberania. Não apenas liberdade, mas poder.
+        </p>
+        <p class="section-text" id="features-text">
+            ✦ 100% open-source<br>
+            ✦ Baseado em criptografia assimétrica<br>
+            ✦ Alimentado por WebSocket + Kafka + blockchain própria<br>
+            ✦ Projetado para resiliência offline e identidade criptográfica
+        </p>
+        <a class="link-button" href="https://github.com/0xrodrigues" target="_blank" id="explore-projects">✦ Explorar
+            outros projetos ✦</a>
+    </section>
+
+    <script>
+        let isEnglish = false;
+
+        function toggleLanguage() {
+            isEnglish = !isEnglish;
+            document.querySelector('.language-switch').innerText = isEnglish ? 'PT' : 'EN';
+
+            document.getElementById('intro-text').innerText = isEnglish
+                ? 'We do not inherit freedom from the system. We forge it — line by line, block by block. VOIDX is not just a currency, it\'s an act of resistance. A declaration. A break from the algorithmic prison.'
+                : 'Nós não herdamos a liberdade do sistema. Nós a forjamos — linha por linha, bloco por bloco. VOIDX não é apenas uma moeda, é um ato de resistência. Uma declaração. Uma ruptura com a prisão algorítmica.';
+
+            document.getElementById('read-manifesto').innerText = isEnglish ? '↳ Read manifesto' : '↳ Ler manifesto';
+
+            document.getElementById('illusion-text').innerText = isEnglish
+                ? 'We live surrounded by illusions of choice. Every click, every transfer, every interaction leaves a digital fingerprint, captured, analyzed, monetized. Centralized systems claim convenience — but demand submission.'
+                : 'Vivemos cercados por ilusões de escolha. Cada clique, cada transferência, cada interação deixa uma impressão digital, capturada, analisada e monetizada. Sistemas centralizados prometem conveniência — mas exigem submissão.';
+
+            document.getElementById('emerge-text').innerText = isEnglish
+                ? 'VOIDX emerges from the shadows as an answer. A decentralized, encrypted, peer-to-peer protocol where control returns to the individual. We reject surveillance capitalism. We reject institutional gatekeeping.'
+                : 'VOIDX surge das sombras como resposta. Um protocolo descentralizado, criptografado e peer-to-peer onde o controle retorna ao indivíduo. Rejeitamos o capitalismo de vigilância. Rejeitamos o monopólio institucional.';
+
+            document.getElementById('philosophy-text').innerText = isEnglish
+                ? 'Inspired by cypherpunks and shaped by rebels, VOIDX is more than a currency — it\'s a call to arms. Our goal is not only privacy, but autonomy. Not only freedom, but power.'
+                : 'Inspirado por cypherpunks e moldado por rebeldes, VOIDX é mais do que uma moeda — é um chamado à resistência. Nosso objetivo é não apenas privacidade, mas soberania. Não apenas liberdade, mas poder.';
+
+            document.getElementById('explore-projects').innerText = isEnglish
+                ? '✦ Explore other projects ✦'
+                : '✦ Explorar outros projetos ✦';
+
+            // Aqui adicionamos a tradução do terminal-box
+            document.getElementById('terminal-box').innerHTML = isEnglish
+                ? `$ init --chain voidx --peer cypherpunk.local<br>
+                   # Connecting to decentralized resistance node...<br>
+                   # Encryption: ON | Surveillance: OFF | Power: YOURS`
+                : `$ init --chain voidx --peer cypherpunk.local<br>
+                   # Conectando ao nó de resistência descentralizada...<br>
+                   # Criptografia: ATIVA | Vigilância: DESLIGADA | Poder: SEU`;
+
+            // Aqui adicionamos a tradução do bloco de features
+            document.getElementById('features-text').innerHTML = isEnglish
+                ? `✦ 100% open-source<br>
+                   ✦ Based on asymmetric encryption<br>
+                   ✦ Powered by WebSocket + Kafka + custom blockchain<br>
+                   ✦ Designed for offline-resilience and cryptographic identity`
+                : `✦ 100% open-source<br>
+                   ✦ Baseado em criptografia assimétrica<br>
+                   ✦ Alimentado por WebSocket + Kafka + blockchain própria<br>
+                   ✦ Projetado para resiliência offline e identidade criptográfica`;
+        }
+    </script>
+</body>
+
+</html>
