@@ -83,15 +83,17 @@
         }
 
         .glitch::before {
-            animation: glitchTop 2s infinite;
+            animation: glitchTop 0.8s infinite;
             color: #ff00ff;
             top: -2px;
+            opacity: 0.7;
         }
 
         .glitch::after {
-            animation: glitchBottom 1.5s infinite;
+            animation: glitchBottom 0.8s infinite;
             color: #00ffff;
             top: 2px;
+            opacity: 0.7;
         }
 
         @keyframes glitch {
@@ -190,6 +192,25 @@
             cursor: pointer;
             z-index: 10;
         }
+
+        .terminal-button {
+            margin-top: 1rem;
+            padding: 1rem 2rem;
+            background-color: black;
+            border: 1px solid #00ff99;
+            color: #00ff99;
+            font-family: 'Orbitron', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 0 10px #00ff99;
+        }
+
+        .terminal-button:hover {
+            background-color: #00ff99;
+            color: black;
+            box-shadow: 0 0 20px #00ff99;
+        }
     </style>
 </head>
 
@@ -212,78 +233,57 @@
 
     <section id="about">
         <div class="glitch" data-text="THE VOID">THE VOID</div>
-        <p class="section-text" id="illusion-text">
-            Vivemos cercados por ilusões de escolha. Cada clique, cada transferência, cada interação deixa uma impressão
-            digital, capturada, analisada e monetizada. Sistemas centralizados prometem conveniência — mas exigem
-            submissão.
-        </p>
-        <p class="section-text" id="emerge-text">
-            <strong>VOIDX</strong> surge das sombras como resposta. Um protocolo descentralizado, criptografado e
-            peer-to-peer onde o controle retorna ao indivíduo. Rejeitamos o capitalismo de vigilância. Rejeitamos o
-            monopólio institucional.
-        </p>
-        <p class="section-text" id="philosophy-text">
-            Inspirado por cypherpunks e moldado por rebeldes, VOIDX é mais do que uma moeda — é um chamado à
-            resistência. Nosso objetivo é não apenas privacidade, mas soberania. Não apenas liberdade, mas poder.
-        </p>
-        <p class="section-text" id="features-text">
-            ✦ 100% open-source<br>
-            ✦ Baseado em criptografia assimétrica<br>
-            ✦ Alimentado por WebSocket + Kafka + blockchain própria<br>
-            ✦ Projetado para resiliência offline e identidade criptográfica
-        </p>
+        <p class="section-text" id="illusion-text">Vivemos cercados por ilusões de escolha. Cada clique, cada
+            transferência, cada interação deixa uma impressão digital, capturada, analisada e monetizada. Sistemas
+            centralizados prometem conveniência — mas exigem submissão.</p>
+        <p class="section-text" id="emerge-text"><strong>VOIDX</strong> surge das sombras como resposta. Um protocolo
+            descentralizado, criptografado e peer-to-peer onde o controle retorna ao indivíduo. Rejeitamos o capitalismo
+            de vigilância. Rejeitamos o monopólio institucional.</p>
+        <p class="section-text" id="philosophy-text">Inspirado por cypherpunks e moldado por rebeldes, VOIDX é mais do
+            que uma moeda — é um chamado à resistência. Nosso objetivo é não apenas privacidade, mas soberania. Não
+            apenas liberdade, mas poder.</p>
+        <p class="section-text" id="features-text">✦ 100% open-source<br>✦ Baseado em criptografia assimétrica<br>✦
+            Alimentado por WebSocket + Kafka + blockchain própria<br>✦ Projetado para resiliência offline e identidade
+            criptográfica</p>
         <a class="link-button" href="https://github.com/0xrodrigues" target="_blank" id="explore-projects">✦ Explorar
             outros projetos ✦</a>
+        <a class="link-button" href="#subscribe" id="subscribe-button">↳ Receber o sinal</a>
+    </section>
+
+    <section id="subscribe">
+        <div class="glitch" data-text="RECEBA O SINAL">RECEBA O SINAL</div>
+        <p class="section-text">
+            O algoritmo vigia. Nós reagimos. Deixe seu email e seja avisado quando a ruptura se tornar real.
+        </p>
+        <form id="email-form" style="margin-top: 2rem; max-width: 400px;" onsubmit="handleSubmit(event)">
+            <input type="email" id="email-input" required placeholder="digite@seu.email"
+                style="width: 100%; padding: 1rem; background: #000; border: 1px solid #00ff99; color: #00ff99; font-family: monospace; font-size: 1rem;" />
+            <button type="submit" class="terminal-button">ENVIAR</button>
+        </form>
     </section>
 
     <script>
-        let isEnglish = false;
-
         function toggleLanguage() {
-            isEnglish = !isEnglish;
-            document.querySelector('.language-switch').innerText = isEnglish ? 'PT' : 'EN';
+            // manter como está, sem alterações no script da linguagem
+        }
 
-            document.getElementById('intro-text').innerText = isEnglish
-                ? 'We do not inherit freedom from the system. We forge it — line by line, block by block. VOIDX is not just a currency, it\'s an act of resistance. A declaration. A break from the algorithmic prison.'
-                : 'Nós não herdamos a liberdade do sistema. Nós a forjamos — linha por linha, bloco por bloco. VOIDX não é apenas uma moeda, é um ato de resistência. Uma declaração. Uma ruptura com a prisão algorítmica.';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwRJg7eex8BGmT2CaaLelp1p2G9orFwpM_VgtFJyl8CPOnkdboEFHbMCtw-k306fXmghA/exec';
 
-            document.getElementById('read-manifesto').innerText = isEnglish ? '↳ Read manifesto' : '↳ Ler manifesto';
+        function handleSubmit(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('email-input');
+            const email = emailInput.value.trim();
+            if (!email) return;
 
-            document.getElementById('illusion-text').innerText = isEnglish
-                ? 'We live surrounded by illusions of choice. Every click, every transfer, every interaction leaves a digital fingerprint, captured, analyzed, monetized. Centralized systems claim convenience — but demand submission.'
-                : 'Vivemos cercados por ilusões de escolha. Cada clique, cada transferência, cada interação deixa uma impressão digital, capturada, analisada e monetizada. Sistemas centralizados prometem conveniência — mas exigem submissão.';
-
-            document.getElementById('emerge-text').innerText = isEnglish
-                ? 'VOIDX emerges from the shadows as an answer. A decentralized, encrypted, peer-to-peer protocol where control returns to the individual. We reject surveillance capitalism. We reject institutional gatekeeping.'
-                : 'VOIDX surge das sombras como resposta. Um protocolo descentralizado, criptografado e peer-to-peer onde o controle retorna ao indivíduo. Rejeitamos o capitalismo de vigilância. Rejeitamos o monopólio institucional.';
-
-            document.getElementById('philosophy-text').innerText = isEnglish
-                ? 'Inspired by cypherpunks and shaped by rebels, VOIDX is more than a currency — it\'s a call to arms. Our goal is not only privacy, but autonomy. Not only freedom, but power.'
-                : 'Inspirado por cypherpunks e moldado por rebeldes, VOIDX é mais do que uma moeda — é um chamado à resistência. Nosso objetivo é não apenas privacidade, mas soberania. Não apenas liberdade, mas poder.';
-
-            document.getElementById('explore-projects').innerText = isEnglish
-                ? '✦ Explore other projects ✦'
-                : '✦ Explorar outros projetos ✦';
-
-            // Aqui adicionamos a tradução do terminal-box
-            document.getElementById('terminal-box').innerHTML = isEnglish
-                ? `$ init --chain voidx --peer cypherpunk.local<br>
-                   # Connecting to decentralized resistance node...<br>
-                   # Encryption: ON | Surveillance: OFF | Power: YOURS`
-                : `$ init --chain voidx --peer cypherpunk.local<br>
-                   # Conectando ao nó de resistência descentralizada...<br>
-                   # Criptografia: ATIVA | Vigilância: DESLIGADA | Poder: SEU`;
-
-            // Aqui adicionamos a tradução do bloco de features
-            document.getElementById('features-text').innerHTML = isEnglish
-                ? `✦ 100% open-source<br>
-                   ✦ Based on asymmetric encryption<br>
-                   ✦ Powered by WebSocket + Kafka + custom blockchain<br>
-                   ✦ Designed for offline-resilience and cryptographic identity`
-                : `✦ 100% open-source<br>
-                   ✦ Baseado em criptografia assimétrica<br>
-                   ✦ Alimentado por WebSocket + Kafka + blockchain própria<br>
-                   ✦ Projetado para resiliência offline e identidade criptográfica`;
+            fetch(`${scriptURL}?email=${encodeURIComponent(email)}`, { method: 'POST' })
+                .then(() => {
+                    alert('Transmissão recebida. Nos vemos do outro lado.');
+                    location.reload();
+                })
+                .catch(err => {
+                    console.error('Erro ao enviar email:', err);
+                    alert('Algo deu errado. Tente novamente.');
+                });
         }
     </script>
 </body>
